@@ -1,0 +1,23 @@
+.*
+*.o
+*.patch
+cscope.*
+TAGS
+tags
+
+# dont ignore gitignore
+!.gitignore
+
+client/bin_utility/
+client/build/
+client/CMakeFiles/
+client/cmake_install.cmake
+client/CMakeCache.txt
+client/Makefile
+
+server/bin_utility/
+server/build/
+server/CMakeFiles/
+server/cmake_install.cmake
+server/CMakeCache.txt
+server/Makefile
