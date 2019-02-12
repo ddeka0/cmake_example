@@ -18,7 +18,6 @@ add_subdirectory(../utility_library bin_utility)
 # add all include paths
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(../utility_library/)
-include_directories(../utility_library/include/)
 
 
 add_executable(${PROJECT_NAME} server.cpp)

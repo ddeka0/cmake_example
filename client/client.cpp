@@ -1,4 +1,3 @@
-// Client side C/C++ program to demonstrate Socket programming 
 #include "include/network.h"
 using namespace std;
 #define PORT 8080
@@ -6,8 +5,7 @@ using namespace std;
 
 int main(int argc, char const *argv[]) {
 
-	struct sockaddr_in address;
-	int sock = 0, valread;
+	int sock = 0;
 	struct sockaddr_in serv_addr;
 	char buffer[1024] = {0};
 	
@@ -21,7 +19,7 @@ int main(int argc, char const *argv[]) {
 
 	serv_addr.sin_family = AF_INET; 
 	serv_addr.sin_port = htons(PORT); 
-	address.sin_addr.s_addr = inet_addr("127.0.0.1"); 
+	serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); 
 	
 	if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) { 
 		printf("\nConnection Failed \n"); 
@@ -38,8 +36,13 @@ int main(int argc, char const *argv[]) {
 
 		write_stream(sock,(uint8_t*)(msg.c_str()), msg.length());
 		printf("%s :: message sent\n",msg.c_str()); 
-		valread = read(sock,buffer,1024); 
+		
+		// user protocol is not fully defined yet
+		// thereore using read() directly		
+		
+		read(sock,buffer,1024); 
 		printf("%s\n",buffer);	
+		
 		memset(buffer,0,sizeof(buffer));
 		
 		sleep(2);

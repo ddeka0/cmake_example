@@ -1,24 +1,22 @@
-// Server side C/C++ program to demonstrate Socket programming 
 #include "include/network.h"
 using namespace std;
 #define PORT 8080
 #define LOCALHOST	"127.0.0.1"
 
 int main(int argc, char const *argv[]) {
-	int server_fd, new_socket, valread; 
+	int server_fd, new_socket; 
 	struct sockaddr_in address;
 	int opt = 1;
 	int addrlen = sizeof(address);
 	char buffer[1024] = {0};
-	char *hello = "Hello from server";
 
-	// Creating socket file descriptor 
+
 	if((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
 		perror("socket failed");
 		exit(EXIT_FAILURE);
 	}
 
-	// Forcefully attaching socket to the port 8080 
+
 	if(setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, 
 		sizeof(opt))) {
 		perror("setsockopt"); 
@@ -30,7 +28,7 @@ int main(int argc, char const *argv[]) {
 	address.sin_port = htons(PORT); 
 
 
-	// Forcefully attaching socket to the port 8080 
+
 	if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0 ) {
 		perror("bind failed");
 		exit(EXIT_FAILURE);
@@ -49,17 +47,21 @@ int main(int argc, char const *argv[]) {
 	}
 
 	printf("accepted ...\n");
+	string hello = "Hello from server";
 	while(1) {
 
 		memset(buffer,0,sizeof(buffer));
 
+		// user protocol is not fully defined yet
+		// thereore using read() directly
+		
 		read(new_socket,buffer,1024);  
 		
 		printf("%s\n",buffer); 
 		
-		write_stream(new_socket,(uint8_t*)(hello), strlen(hello));
+		write_stream(new_socket,(uint8_t*)(hello.c_str()), hello.length());
 		
-		printf("%s :: message sent\n",hello); 
+		printf("%s :: message sent\n",hello.c_str());
 
 	}
 	return 0; 
