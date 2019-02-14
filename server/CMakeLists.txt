@@ -16,11 +16,11 @@ add_subdirectory(../utility_library bin_utility)
 
 
 # add all include paths
-include_directories(${PROJECT_SOURCE_DIR})
+# include_directories(${PROJECT_SOURCE_DIR})
 include_directories(../utility_library/)
 
 
-add_executable(${PROJECT_NAME} server.cpp)
+add_executable(${PROJECT_NAME} src/server.cpp)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -g")
 

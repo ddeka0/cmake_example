@@ -1,10 +1,12 @@
 #include "include/network.h"
 using namespace std;
 #define PORT 8080
-#define LOCALHOST	"127.0.0.1"
 
 int main(int argc, char const *argv[]) {
-
+	if(argc != 2) {
+		cout << "usage : ./build/bin/client <server ip>" << endl;
+		return 0;
+	}
 	int sock = 0;
 	struct sockaddr_in serv_addr;
 	char buffer[1024] = {0};

@@ -1,9 +1,13 @@
 #include "include/network.h"
 using namespace std;
 #define PORT 8080
-#define LOCALHOST	"127.0.0.1"
 
 int main(int argc, char const *argv[]) {
+	if(argc != 2) {
+		cout << "usage : ./build/bin/server <server ip>" << endl;
+		return 0;
+	}
+
 	int server_fd, new_socket; 
 	struct sockaddr_in address;
 	int opt = 1;
