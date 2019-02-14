@@ -3,10 +3,6 @@ using namespace std;
 #define PORT 8080
 
 int main(int argc, char const *argv[]) {
-	if(argc != 2) {
-		cout << "usage : ./build/bin/server <server ip>" << endl;
-		return 0;
-	}
 
 	int server_fd, new_socket; 
 	struct sockaddr_in address;
@@ -28,7 +24,7 @@ int main(int argc, char const *argv[]) {
 	}
 	
 	address.sin_family = AF_INET; 
-	address.sin_addr.s_addr = inet_addr("127.0.0.1"); 
+	address.sin_addr.s_addr = inet_addr("server"); 
 	address.sin_port = htons(PORT); 
 
 

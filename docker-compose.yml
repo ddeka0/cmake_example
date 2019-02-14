@@ -1,0 +1,14 @@
+version: '3'
+services:
+    server:
+        image: server:1.0
+        build: ./server
+        command: "/app/server/build/bin/server"
+        ports:
+            - 8080:8080
+    # client:
+    #     image: client:1.0
+    #     build: ./client
+    #     depends_on:
+    #         - server
+    #     command: "/app/client/build/bin/client"
